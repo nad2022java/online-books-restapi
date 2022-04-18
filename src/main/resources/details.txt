@@ -1,0 +1,33 @@
+Assignment:
+
+Please create a REST API for an online bookstore, where the user can perform the following operations:
+
+CRUD operations on Books
+Checkout operation for single or multiple books which will return the total payable amount.
+ 
+
+Considerations:
+
+You can use either Spring Boot or Quarkus
+Book object should have the following attributes:
+Name
+Description
+Author
+Type/Classification
+Price
+ISBN
+Checkout method will take list of books as parameters plus optional promotion code and return total price after discount (if applicable).
+Promotion/Discounts is variant according to book type/classification, ex: fiction books may have 10% discount while comic books have 0% discount.
+ 
+
+Deliverables:
+
+Unit tests for all operations
+Ability to run the application locally.
+Ability to run the application on a docker container.
+Please upload the source code into GitHub, and send us an email with the URL for the GitHub repository.
+ 
+
+Notes:
+
+You can use any persistence method for Books (i.e. in memory, database, etc.).
