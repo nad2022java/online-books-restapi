@@ -12,20 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.book.dao.BookDao;
 import com.api.book.entities.Book;
-import com.api.book.entities.BookService;
+
+import com.api.book.services.BookService;
 
 @RestController
 public class BookController {
 
 	@Autowired
-	private BookService bookService;
+	private final BookService bookService;
+
+	
+	
+	
+	public BookController(BookService bookService) {
+		
+		this.bookService = bookService;
+	}
 
 	// get all books handler
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ResponseEntity<List<Book>> getBooks() {
 
-		List<Book> list = bookService.getAllBooks();
+		List<Book> list = (List<Book>) bookService.findAll();
 		if (list.size() <= 0) {
 
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -71,7 +81,6 @@ public class BookController {
 		}
 	}
 
-	
 	// update single book handler
 	@RequestMapping(value = "/books/{bookId}", method = RequestMethod.PUT)
 	public ResponseEntity<Book> updateBook(@RequestBody Book book, @PathVariable("bookId") String bookId) {
@@ -85,8 +94,5 @@ public class BookController {
 		}
 
 	}
-	
-	
-	
-	
+
 }
